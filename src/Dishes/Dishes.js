@@ -10,7 +10,7 @@ class Dishes extends Component {
     // We create the state to store the various statuses
     // e.g. API data loading or error
     this.state = {
-      status: "LOADING"
+      status: "LOADING",
     };
   }
 
@@ -21,7 +21,7 @@ class Dishes extends Component {
     // when data is retrieved we update the state
     // this will cause the component to re-render
     modelInstance
-      .getAllDishes()
+      .getAllDishes("all","")
       .then(dishes => {
         this.setState({
           status: "LOADED",
@@ -37,6 +37,8 @@ class Dishes extends Component {
 
   render() {
     let dishesList = null;
+    console.log(this.state.dishes);
+    
 
     // depending on the state we either generate
     // useful message to the user or show the list
@@ -57,6 +59,38 @@ class Dishes extends Component {
 
     return (
       <div className="Dishes">
+        <input id="dish-filter" type="text"></input>
+        <select id="dish-type">
+          <option value="all">all</option>
+        </select>
+
+        <button onClick={
+          ()=>{
+            let f = document.getElementById("dish-filter").value;
+
+            let e = document.getElementById("dish-type");
+            let t = e.options[e.selectedIndex].value;
+
+            console.log(f);
+
+            modelInstance
+      .getAllDishes(t,f)
+      .then(dishes => {
+        this.setState({
+          status: "LOADED",
+          dishes: dishes.results
+        });
+      })
+      .catch(() => {
+        this.setState({
+          status: "ERROR"
+        });
+      });
+
+          }
+        }>confirm
+        </button>
+
         <h3>Dishes</h3>
         <ul>{dishesList}</ul>
       </div>

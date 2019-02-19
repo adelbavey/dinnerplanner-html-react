@@ -1,8 +1,9 @@
 import ObservableModel from "./ObservableModel";
+import KEY from "./SpoonAPI"
 
 const BASE_URL = "http://sunset.nada.kth.se:8080/iprog/group/62/";
 const httpOptions = {
-  headers: { "X-Mashape-Key": "YOUR_API_KEY" }
+  headers: { "X-Mashape-Key": KEY }
 };
 
 class DinnerModel extends ObservableModel {
@@ -35,8 +36,15 @@ class DinnerModel extends ObservableModel {
    * Do an API call to the search API endpoint.
    * @returns {Promise<any>}
    */
-  getAllDishes() {
-    const url = `${BASE_URL}/recipes/search`;
+  getAllDishes(type,filter) {
+    let params = "";
+    if(type != "all"){
+			params = params + "type=" + type + "&";
+		}
+		if(filter != null && filter != "" && filter != undefined){
+			params = params + "query=" + filter + "&";
+		}
+    const url = `${BASE_URL}/recipes/search?`+params;
     return fetch(url, httpOptions).then(this.processResponse);
   }
 
