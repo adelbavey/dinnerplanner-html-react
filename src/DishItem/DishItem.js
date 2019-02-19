@@ -8,6 +8,7 @@ class DishItem extends Component {
     super(props);
   }
   render() {
+    let imgsrc = this.props.dish.image.includes("http") ? this.props.dish.image : `https://www.spoonacular.com/recipeImages/${this.props.dish.image}`;
     return (
       <div className="DishItem">
 
@@ -15,7 +16,7 @@ class DishItem extends Component {
           console.log("clicked item")
           modelInstance.setCurrentDish(this.props.dish);
         }}>
-        <img src="https://via.placeholder.com/150"></img>
+        <img src={imgsrc} height="150px" width="150px"></img>
         <div>{this.props.dish.title}</div>
         </Link>
 

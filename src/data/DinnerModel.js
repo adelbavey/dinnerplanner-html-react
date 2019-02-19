@@ -11,7 +11,18 @@ class DinnerModel extends ObservableModel {
     super();
     this._numberOfGuests = 4;
     this.getNumberOfGuests();
-    this.currentDish;
+    this.currentDish=undefined;
+    this.menu = [];
+  }
+
+  addToMenu(dish){
+    this.menu.push(dish);
+    this.notifyObservers();
+  }
+
+  getMenu(){
+    console.log(this.menu);
+    return this.menu;
   }
 
   getCurrentDish(){

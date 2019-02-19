@@ -5,6 +5,7 @@ import modelInstance from "../data/DinnerModel";
 import "./DishDetails.css";
 import DishItem from "../DishItem/DishItem";
 import Sidebar from "../Sidebar/Sidebar";
+import { Link } from "react-router-dom";
 
 class DishDetails extends Component {
   constructor(props) {
@@ -56,15 +57,18 @@ class DishDetails extends Component {
         <div>
           <DishItem dish ={this.state.dish}></DishItem>
 
+          
+
           <br></br>
           <div class="dish-ingredients">
           {this.state.dish.extendedIngredients.map(ingredient=>(
             <div>{ingredient.name}</div>
           ))}
           </div>
-          
+            {console.log(this.state.dish)}
+            <button onClick={()=>modelInstance.addToMenu(modelInstance.getCurrentDish())}>add to menu</button>
 
-          </div>
+          </div>;
         break;
       default:
         dishDetails = <b>Failed to load data, please try again</b>;
@@ -74,8 +78,14 @@ class DishDetails extends Component {
     return (
       <div className="DishDetails">
         <Sidebar model={this.props.model} />
+
         {dishDetails}
 
+        <br></br>
+
+        <Link to="/search">
+          <button>back to edit</button>
+        </Link>
       </div>
     );
   }

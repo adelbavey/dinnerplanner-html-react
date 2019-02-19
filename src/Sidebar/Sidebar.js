@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./Sidebar.css";
+import modelInstance from "../data/DinnerModel";
 
 class Sidebar extends Component {
   constructor(props) {
@@ -8,7 +9,8 @@ class Sidebar extends Component {
 
     // we put on state the properties we want to use and modify in the component
     this.state = {
-      numberOfGuests: this.props.model.getNumberOfGuests()
+      numberOfGuests: this.props.model.getNumberOfGuests(),
+      menu: this.props.model.getMenu()
     };
   }
 
@@ -29,7 +31,8 @@ class Sidebar extends Component {
   // cause the component to re-render
   update() {
     this.setState({
-      numberOfGuests: this.props.model.getNumberOfGuests()
+      numberOfGuests: this.props.model.getNumberOfGuests(),
+      menu: this.props.model.getMenu()
     });
   }
 
@@ -39,6 +42,7 @@ class Sidebar extends Component {
   };
 
   render() {
+    
     return (
       <div className="Sidebar">
         <h3>This is the sidebar</h3>
@@ -52,6 +56,11 @@ class Sidebar extends Component {
           <br />
           Total number of guests: {this.state.numberOfGuests}
         </p>
+
+        {this.state.menu.map(dish => (
+            <li key={dish.id}>{dish.title}</li>
+          ))}
+
         <Link to="/overview">
           <button>Checkout</button>
         </Link>
