@@ -3,6 +3,7 @@ import React, { Component } from "react";
 // we can import the model instance directly
 import modelInstance from "../data/DinnerModel";
 import "./Dishes.css";
+import DishItem from "../DishItem/DishItem";
 
 class Dishes extends Component {
   constructor(props) {
@@ -49,7 +50,7 @@ class Dishes extends Component {
         break;
       case "LOADED":
         dishesList = this.state.dishes.map(dish => (
-          <li key={dish.id}>{dish.title}</li>
+          <li key={dish.id}><DishItem title={dish.title}></DishItem></li>
         ));
         break;
       default:
@@ -60,8 +61,16 @@ class Dishes extends Component {
     return (
       <div className="Dishes">
         <input id="dish-filter" type="text"></input>
+        
         <select id="dish-type">
-          <option value="all">all</option>
+          <option selected value="all">All</option>
+          <option value="starter">Starter</option>
+          <option value="main dish">Main Course</option>
+          <option value="dessert">Dessert</option>
+          <option value="side dish">Side dish</option>
+          <option value="appetizer">Appetizer</option>
+          <option value="salad">Salad</option>
+          <option value="sauce">Sauce</option>
         </select>
 
         <button onClick={
@@ -74,20 +83,20 @@ class Dishes extends Component {
             console.log(f);
 
             modelInstance
-      .getAllDishes(t,f)
-      .then(dishes => {
-        this.setState({
-          status: "LOADED",
-          dishes: dishes.results
-        });
-      })
-      .catch(() => {
-        this.setState({
-          status: "ERROR"
-        });
-      });
+              .getAllDishes(t,f)
+              .then(dishes => {
+                this.setState({
+                  status: "LOADED",
+                  dishes: dishes.results
+                });
+              })
+              .catch(() => {
+                this.setState({
+                  status: "ERROR"
+                });
+              });
 
-          }
+            }
         }>confirm
         </button>
 
