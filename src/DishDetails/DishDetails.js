@@ -60,12 +60,24 @@ class DishDetails extends Component {
           
 
           <br></br>
-          <div class="dish-ingredients">
+          <div className="dish-ingredients">
+          {console.log(this.state.dish.extendedIngredients)}
+          <table><tbody><th>name</th><th>quantity</th><th>unit</th>
           {this.state.dish.extendedIngredients.map(ingredient=>(
-            <div>{ingredient.name}</div>
+            <tr>
+              <td>{ingredient.name}</td>
+              <td>{ingredient.amount}</td>
+              <td>{ingredient.unit}</td>
+            </tr>
           ))}
+          </tbody>
+          </table>
           </div>
-            {console.log(this.state.dish)}
+          <div>
+            <h2>Preperation</h2>
+            {this.state.dish.instructions}
+          </div>
+            {console.log(this.state)}
             <button onClick={()=>modelInstance.addToMenu(modelInstance.getCurrentDish())}>add to menu</button>
 
           </div>;
