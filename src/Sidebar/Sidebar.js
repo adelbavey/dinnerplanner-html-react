@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "./Sidebar.css";
 
 class Sidebar extends Component {
@@ -51,6 +52,9 @@ class Sidebar extends Component {
           <br />
           Total number of guests: {this.state.numberOfGuests}
         </p>
+        <Link to="/overview">
+          <button>Checkout</button>
+        </Link>
       </div>
     );
   }

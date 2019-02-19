@@ -4,7 +4,9 @@ import Welcome from "./Welcome/Welcome";
 import modelInstance from "./data/DinnerModel";
 import SelectDish from "./SelectDish/SelectDish";
 import DishDetails from "./DishDetails/DishDetails"
+import Overview from "./Overview/Overview"
 import "./App.css";
+import Printout from "./Printout/Printout";
 
 class App extends Component {
   constructor(props) {
@@ -29,6 +31,14 @@ class App extends Component {
           <Route
             path="/details"
             render={() => <DishDetails model={modelInstance} />}
+          />
+          <Route
+            path="/overview"
+            render={() => <Overview model={modelInstance} />}
+          />
+          <Route
+            path="/printout"
+            render={() => <Printout model={modelInstance} />}
           />
         </header>
       </div>

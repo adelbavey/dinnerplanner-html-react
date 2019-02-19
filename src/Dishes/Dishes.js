@@ -84,6 +84,7 @@ class Dishes extends Component {
 
             console.log(f);
 
+            this.setState({status:"LOADING"})
             modelInstance
               .getAllDishes(t,f)
               .then(dishes => {
@@ -99,7 +100,7 @@ class Dishes extends Component {
               });
 
             }
-        }>confirm
+        }>Search
         </button>
 
         <h3>Dishes</h3>
