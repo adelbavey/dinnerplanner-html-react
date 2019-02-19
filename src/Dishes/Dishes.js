@@ -21,21 +21,26 @@ class Dishes extends Component {
   componentDidMount() {
     // when data is retrieved we update the state
     // this will cause the component to re-render
-    modelInstance
-      .getAllDishes("all","")
-      .then(dishes => {
-        this.setState({
-          status: "LOADED",
-          dishes: dishes.results
-        });
-      })
-      .catch(() => {
-        this.setState({
-          status: "ERROR"
-        });
-      });
+    this.refreshDishList("all","")
   }
 
+  
+  refreshDishList(type,filter){
+    modelInstance
+    .getAllDishes(type,filter)
+    .then(dishes => {
+      this.setState({
+        status: "LOADED",
+        dishes: dishes.results
+      });
+    })
+    .catch(() => {
+      this.setState({
+        status: "ERROR"
+      });
+    });
+
+  }
   render() {
     let dishesList = null;
     console.log(this.state.dishes);
@@ -85,20 +90,7 @@ class Dishes extends Component {
             console.log(f);
 
             this.setState({status:"LOADING"})
-            modelInstance
-              .getAllDishes(t,f)
-              .then(dishes => {
-                this.setState({
-                  status: "LOADED",
-                  dishes: dishes.results
-                });
-              })
-              .catch(() => {
-                this.setState({
-                  status: "ERROR"
-                });
-              });
-
+            this.refreshDishList(t,f);
             }
         }>Search
         </button>
