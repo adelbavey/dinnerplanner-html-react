@@ -11,6 +11,15 @@ class DinnerModel extends ObservableModel {
     super();
     this._numberOfGuests = 4;
     this.getNumberOfGuests();
+    this.currentDish;
+  }
+
+  getCurrentDish(){
+    return this.currentDish;
+  }
+
+  setCurrentDish(dish){
+    this.currentDish = dish;
   }
 
   /**
@@ -45,6 +54,11 @@ class DinnerModel extends ObservableModel {
 			params = params + "query=" + filter + "&";
 		}
     const url = `${BASE_URL}/recipes/search?`+params;
+    return fetch(url, httpOptions).then(this.processResponse);
+  }
+
+  getDish(id) {
+    const url = `${BASE_URL}/recipes/`+ id + "/information";
     return fetch(url, httpOptions).then(this.processResponse);
   }
 

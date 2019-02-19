@@ -39,6 +39,8 @@ class Dishes extends Component {
   render() {
     let dishesList = null;
     console.log(this.state.dishes);
+
+    
     
 
     // depending on the state we either generate
@@ -50,7 +52,7 @@ class Dishes extends Component {
         break;
       case "LOADED":
         dishesList = this.state.dishes.map(dish => (
-          <li key={dish.id}><DishItem title={dish.title}></DishItem></li>
+          <li key={dish.id}><DishItem dish={dish}></DishItem></li>
         ));
         break;
       default:
