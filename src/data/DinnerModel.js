@@ -9,20 +9,24 @@ const httpOptions = {
 class DinnerModel extends ObservableModel {
   constructor() {
     super();
-    this._numberOfGuests = 4;
-    this.getNumberOfGuests();
+    //this._numberOfGuests = 4;
+    //this.getNumberOfGuests();
     this.currentDish=undefined;
-    this.menu = [];
+    //this.menu = [];
+    this.myStorage = window.localStorage;
+    this.myStorage.getItem("numberOfGuests") == null ? this.myStorage.setItem("numberOfGuests", 4):null;
+    this.myStorage.getItem("menu") == null ? this.myStorage.setItem("menu", JSON.stringify([])):null;
   }
 
   addToMenu(dish){
-    this.menu.push(dish);
+    let menu = JSON.parse(this.myStorage.getItem("menu"));
+    menu.push(dish);
+    this.myStorage.setItem("menu", JSON.stringify(menu));
     this.notifyObservers();
   }
 
   getMenu(){
-    console.log(this.menu);
-    return this.menu;
+    return JSON.parse(this.myStorage.getItem("menu"));
   }
 
   getCurrentDish(){
@@ -38,7 +42,9 @@ class DinnerModel extends ObservableModel {
    * @returns {number}
    */
   getNumberOfGuests() {
-    return this._numberOfGuests;
+    //return this._numberOfGuests;
+    console.log("local nrofgsts: ", this.myStorage.getItem("numberOfGuests") )
+    return this.myStorage.getItem("numberOfGuests");
   }
 
   /**
@@ -46,7 +52,8 @@ class DinnerModel extends ObservableModel {
    * @param {number} num
    */
   setNumberOfGuests(num) {
-    this._numberOfGuests = num;
+    //this._numberOfGuests = num;
+    this.myStorage.setItem("numberOfGuests", num);
     this.notifyObservers();
   }
 
