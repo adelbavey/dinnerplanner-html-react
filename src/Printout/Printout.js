@@ -8,14 +8,17 @@ class Printout extends Component {
   render() {
     return (
       <div className="Printout">
-        <p>Printout</p>
-
         <Link to="/search">
           <button>back to edit</button>
         </Link>
-
         {modelInstance.menu.map(dish => (
-            <DishItem key={dish.id} dish={dish}></DishItem>
+            <div>
+              <DishItem key={dish.id} dish={dish}></DishItem>    
+              <div className="Preperation">
+                <h2>Preperation</h2>
+                {dish.instructions}
+              </div>
+            </div>
           ))}
       </div>
     );
