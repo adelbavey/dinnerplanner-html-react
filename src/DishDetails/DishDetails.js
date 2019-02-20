@@ -55,33 +55,45 @@ class DishDetails extends Component {
         break;
       case "LOADED":
         dishDetails = 
-        <div>
+        
+        
+        
+        <div className="container">
+        <div className="row">
+        <div className="col">
           <DishItem dish ={this.state.dish}></DishItem>
+          </div>
 
           
 
           <br></br>
-          <div className="dish-ingredients">
+          <div className="col">
+            <h2>Preperation</h2>
+            {this.state.dish.instructions}
+          </div>
+
+          <div className="dish-ingredients col table">
           {console.log(this.state.dish.extendedIngredients)}
           <table><tbody><th>name</th><th>quantity</th><th>unit</th>
           {this.state.dish.extendedIngredients.map((ingredient,i)=>(
             <tr key={i}>
               <td>{ingredient.name}</td>
-              <td>{ingredient.amount}</td>
               <td>{ingredient.unit}</td>
+              <td>{ingredient.amount}</td>
             </tr>
           ))}
           </tbody>
           </table>
           </div>
-          <div>
-            <h2>Preperation</h2>
-            {this.state.dish.instructions}
-          </div>
+
             {console.log(this.state)}
             <button onClick={()=>modelInstance.addToMenu(this.state.dish)}>add to menu</button>
 
-          </div>;
+            </div>
+
+
+
+        </div>
         break;
       default:
         dishDetails = <b>Failed to load data, please try again</b>;

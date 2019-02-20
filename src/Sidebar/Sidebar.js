@@ -44,27 +44,27 @@ class Sidebar extends Component {
   render() {
     
     return (
-      <div className="Sidebar">
-        <h3>This is the sidebar</h3>
-        <p>
-          People:
-          <input
-            type="number"
-            value={this.state.numberOfGuests}
-            onChange={this.onNumberOfGuestsChanged}
-          />
-          <br />
-          Total number of guests: {this.state.numberOfGuests}
-        </p>
 
-        {this.state.menu.map(dish => (
-            <li key={dish.id}>{dish.title}</li>
-          ))}
+          <div className="Sidebar">
+            <p>
+              People:
+              <input
+                type="number"
+                value={this.state.numberOfGuests}
+                onChange={this.onNumberOfGuestsChanged}
+                />
+              <br />
+              Total number of guests: {this.state.numberOfGuests}
+            </p>
 
-        <Link to="/overview">
-          <button>Checkout</button>
-        </Link>
-      </div>
+            {this.state.menu.map(dish => (
+              <p key={dish.id}>{dish.title}</p>
+              ))}
+
+            <Link to="/overview">
+              <button>Checkout</button>
+            </Link>
+            </div>
     );
   }
 }

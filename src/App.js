@@ -18,6 +18,7 @@ class App extends Component {
 
   render() {
     return (
+      
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">{this.state.title}</h1>
@@ -27,21 +28,22 @@ class App extends Component {
           <Route
             path="/search"
             render={() => <SelectDish model={modelInstance} />}
-          />
+            />
           <Route
             path="/details"
             render={() => <DishDetails model={modelInstance} />}
-          />
+            />
           <Route
             path="/overview"
             render={() => <Overview model={modelInstance} />}
-          />
+            />
           <Route
             path="/printout"
             render={() => <Printout model={modelInstance} />}
-          />
+            />
         </header>
       </div>
+      
     );
   }
 }

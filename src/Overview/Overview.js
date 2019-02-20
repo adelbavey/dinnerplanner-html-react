@@ -8,16 +8,21 @@ class Overview extends Component {
   render() {
     return (
       <div className="Overview">
-        <p>Overview</p>
-
+        <p>My Dinner {modelInstance.getNumberOfGuests()} People</p>
+        
         <Link to="/search">
           <button>back to edit</button>
         </Link>
-
+        <div className="container">
+        <div className="row">
         {modelInstance.menu.map(dish => (
+          <div className="col">
             <DishItem key={dish.id} dish={dish}></DishItem>
+          </div>
           ))}
 
+          </div>
+        </div>
         <Link to="/printout">
           <button>Print Receipt</button>
         </Link>

@@ -58,7 +58,7 @@ class Dishes extends Component {
         break;
       case "LOADED":
         dishesList = this.state.dishes.map(dish => (
-          <li key={dish.id}><DishItem dish={dish}></DishItem></li>
+          <div key={dish.id}><DishItem dish={dish}></DishItem></div>
         ));
         break;
       default:
@@ -97,7 +97,9 @@ class Dishes extends Component {
         </button>
 
         <h3>Dishes</h3>
-        <ul>{dishesList}</ul>
+        <div className="row">
+        <div className="d-flex flex-row flex-wrap">{dishesList}</div>
+        </div>
       </div>
     );
   }

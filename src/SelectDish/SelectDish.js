@@ -7,11 +7,18 @@ class SelectDish extends Component {
   render() {
     return (
       <div className="SelectDish">
-        <h2>This is the Select Dish screen</h2>
 
         {/* We pass the model as property to the Sidebar component */}
-        <Sidebar model={this.props.model} />
-        <Dishes />
+        <div className="container-fluid">
+          <div className="row">
+          <div className="col-sm-12 col-md-3">
+            <Sidebar model={this.props.model} />
+          </div>
+          <div className="col-9 container">
+            <Dishes />
+          </div>
+          </div>
+      </div>
       </div>
     );
   }

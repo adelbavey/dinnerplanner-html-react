@@ -11,15 +11,21 @@ class Printout extends Component {
         <Link to="/search">
           <button>back to edit</button>
         </Link>
-        {modelInstance.menu.map(dish => (
-            <div>
-              <DishItem key={dish.id} dish={dish}></DishItem>    
-              <div className="Preperation">
-                <h2>Preperation</h2>
-                {dish.instructions}
-              </div>
-            </div>
+        <div className="container-fluid">
+          {modelInstance.menu.map(dish => (
+        <div className="row">
+        
+          <div className="col ">
+             <DishItem key={dish.id} dish={dish}></DishItem>    
+          </div>
+          <div className="Preperation col">
+            <h2>Preperation</h2>
+              {dish.instructions}
+          </div>
+            
+          </div>
           ))}
+        </div>
       </div>
     );
   }
