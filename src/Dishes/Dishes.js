@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import modelInstance from "../data/DinnerModel";
 import "./Dishes.css";
 import DishItem from "../DishItem/DishItem";
+import Spinner from "../Spinner/Spinner";
 
 class Dishes extends Component {
   constructor(props) {
@@ -53,7 +54,7 @@ class Dishes extends Component {
     // of returned dishes
     switch (this.state.status) {
       case "LOADING":
-        dishesList = <em>Loading...</em>;
+        dishesList = <Spinner></Spinner>;
         break;
       case "LOADED":
         dishesList = this.state.dishes.map(dish => (

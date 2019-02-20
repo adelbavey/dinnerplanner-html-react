@@ -6,6 +6,7 @@ import "./DishDetails.css";
 import DishItem from "../DishItem/DishItem";
 import Sidebar from "../Sidebar/Sidebar";
 import { Link } from "react-router-dom";
+import Spinner from "../Spinner/Spinner"
 
 class DishDetails extends Component {
   constructor(props) {
@@ -50,7 +51,7 @@ class DishDetails extends Component {
     // of returned dishes
     switch (this.state.status) {
       case "LOADING":
-        dishDetails = <em>Loading...</em>;
+        dishDetails = <Spinner/>;
         break;
       case "LOADED":
         dishDetails = 
