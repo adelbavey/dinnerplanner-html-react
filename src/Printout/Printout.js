@@ -11,8 +11,7 @@ class Printout extends Component {
         <Link to="/search">
           <button>back to edit</button>
         </Link>
-<<<<<<< HEAD
-        {modelInstance.menu.map(dish => (
+        {modelInstance.getMenu().map(dish => (
             <div>
               <DishItem key={dish.id} dish={dish}></DishItem>    
               <div className="Preperation">
@@ -20,11 +19,6 @@ class Printout extends Component {
                 {dish.instructions}
               </div>
             </div>
-=======
-
-        {modelInstance.getMenu().map(dish => (
-            <DishItem key={dish.id} dish={dish}></DishItem>
->>>>>>> e277cbc5a310bbc9a76cac3d2f44b2def188ba53
           ))}
       </div>
     );
