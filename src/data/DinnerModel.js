@@ -58,10 +58,10 @@ class DinnerModel extends ObservableModel {
    */
   getAllDishes(type,filter) {
     let params = "";
-    if(type != "all"){
+    if(type !== "all"){
 			params = params + "type=" + type + "&";
 		}
-		if(filter != null && filter != "" && filter != undefined){
+		if(filter !== null && filter !== "" && filter !== undefined){
 			params = params + "query=" + filter + "&";
 		}
     const url = `${BASE_URL}/recipes/search?`+params;

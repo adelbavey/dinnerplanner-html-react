@@ -68,10 +68,10 @@ class Dishes extends Component {
 
     return (
       <div className="Dishes">
+
         <input id="dish-filter" type="text"></input>
-        
         <select id="dish-type">
-          <option selected value="all">All</option>
+          <option defaultValue ="all">All</option>
           <option value="starter">Starter</option>
           <option value="main dish">Main Course</option>
           <option value="dessert">Dessert</option>

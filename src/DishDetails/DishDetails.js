@@ -64,8 +64,8 @@ class DishDetails extends Component {
           <div className="dish-ingredients">
           {console.log(this.state.dish.extendedIngredients)}
           <table><tbody><th>name</th><th>quantity</th><th>unit</th>
-          {this.state.dish.extendedIngredients.map(ingredient=>(
-            <tr>
+          {this.state.dish.extendedIngredients.map((ingredient,i)=>(
+            <tr key={i}>
               <td>{ingredient.name}</td>
               <td>{ingredient.amount}</td>
               <td>{ingredient.unit}</td>
@@ -79,7 +79,7 @@ class DishDetails extends Component {
             {this.state.dish.instructions}
           </div>
             {console.log(this.state)}
-            <button onClick={()=>modelInstance.addToMenu(modelInstance.getCurrentDish())}>add to menu</button>
+            <button onClick={()=>modelInstance.addToMenu(this.state.dish)}>add to menu</button>
 
           </div>;
         break;
