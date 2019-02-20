@@ -14,7 +14,7 @@ class Overview extends Component {
           <button>back to edit</button>
         </Link>
 
-        {modelInstance.menu.map(dish => (
+        {modelInstance.getMenu().map(dish => (
             <DishItem key={dish.id} dish={dish}></DishItem>
           ))}
 

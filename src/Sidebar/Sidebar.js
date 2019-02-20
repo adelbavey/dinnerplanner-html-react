@@ -57,6 +57,7 @@ class Sidebar extends Component {
           Total number of guests: {this.state.numberOfGuests}
         </p>
 
+        {console.log("sidebar menu ",this.state.menu)}
         {this.state.menu.map(dish => (
             <li key={dish.id}>{dish.title}</li>
           ))}
