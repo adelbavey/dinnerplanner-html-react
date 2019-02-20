@@ -6,20 +6,19 @@ import "./DishItem.css";
 class DishItem extends Component {
   render() {
     let imgsrc = this.props.dish.image.includes("http") ? this.props.dish.image : `https://www.spoonacular.com/recipeImages/${this.props.dish.image}`;
-    return (
-      <div className="DishItem">
+    let title = this.props.dish.title.slice(0,15);
 
+    return (
+      <div className="DishItem card">
         <Link to={"/details"} onClick={()=>{
           console.log("clicked item")
           modelInstance.setCurrentDish(this.props.dish);
         }}>
         <img src={imgsrc} height="150px" width="150px" alt="DishImage"></img>
-        <div>{this.props.dish.title}</div>
+        <p>{title}</p>
         </Link>
-
       </div>
     );
   }
 }
-
 export default DishItem;
