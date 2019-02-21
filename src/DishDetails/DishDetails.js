@@ -107,7 +107,7 @@ class DishDetails extends Component {
             <tr key={i}>
               <td>{ingredient.name}</td>
               <td>{ingredient.unit}</td>
-              <td>{ingredient.amount}</td>
+              <td>{ingredient.amount*this.state.numberOfGuests}</td>
               <td>{this.state.numberOfGuests}</td>
             </tr>
           ))}
