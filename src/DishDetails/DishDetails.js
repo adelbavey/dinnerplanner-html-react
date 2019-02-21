@@ -8,9 +8,13 @@ import Sidebar from "../Sidebar/Sidebar";
 import { Link } from "react-router-dom";
 import Spinner from "../Spinner/Spinner"
 
+
 class DishDetails extends Component {
   constructor(props) {
     super(props);
+    if(!modelInstance.getCurrentDish()){
+      window.location.href ="/search"
+    }
     // We create the state to store the various statuses
     // e.g. API data loading or error
     this.state = {
@@ -34,14 +38,23 @@ class DishDetails extends Component {
         
         this.setState({
           status: "LOADED",
-          dish: dish
+          dish: dish,
+          numberOfGuests: modelInstance.getNumberOfGuests()
         });
+
+        modelInstance.addObserver(this);
       })
       .catch(() => {
         this.setState({
           status: "ERROR"
         });
       });
+  }
+
+  update(){
+    this.setState(
+      {numberOfGuests: modelInstance.getNumberOfGuests()}
+    );
   }
 
   render() {
@@ -95,12 +108,12 @@ class DishDetails extends Component {
               <td>{ingredient.name}</td>
               <td>{ingredient.unit}</td>
               <td>{ingredient.amount}</td>
-              <td>1</td>
+              <td>{this.state.numberOfGuests}</td>
             </tr>
           ))}
           </tbody>
           </table>
-          total cost: {this.dishPrice} SEK
+          total cost: {this.dishPrice*this.state.numberOfGuests} SEK
           </div>
 
             {console.log(this.state)}
