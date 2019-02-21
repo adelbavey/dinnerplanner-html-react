@@ -7,17 +7,26 @@ import "./Printout.css";
 class Printout extends Component {
   render() {
     return (
-      <div className="Printout">
+      <div className="container-fluid Printout">
         <Link to="/search">
           <button>back to edit</button>
         </Link>
         {modelInstance.getMenu().map(dish => (
+        <div className="row">
             <div>
               <DishItem key={dish.id} dish={dish}></DishItem>    
+            </div>
+          <div class="col">
               <div className="Preperation">
                 <h2>Preperation</h2>
+          </div>
+          <div className="col">
+                <div className="intructions">
                 {dish.instructions}
-              </div>
+                </div>
+          </div>
+          </div>
+              
             </div>
           ))}
       </div>

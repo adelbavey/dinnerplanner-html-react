@@ -15,14 +15,16 @@ class Overview extends Component {
         </Link>
         <div className="container">
         <div className="row">
-        {modelInstance.menu.map(dish => (
+        {modelInstance.getMenu().map(dish => (
           <div className="col">
             <DishItem key={dish.id} dish={dish}></DishItem>
+            <p>{modelInstance.getDishPrice(dish)*modelInstance.getNumberOfGuests()} SEK</p>
           </div>
           ))}
 
           </div>
         </div>
+        <p>Cost: {modelInstance.getMenuPrice()*modelInstance.getNumberOfGuests()} SEK</p>
         <Link to="/printout">
           <button>Print Receipt</button>
         </Link>

@@ -25,6 +25,14 @@ class DinnerModel extends ObservableModel {
     this.notifyObservers();
   }
 
+  getDishPrice(dish){
+    return dish.extendedIngredients.length;
+  }
+  getMenuPrice(){
+    let menu = JSON.parse(this.myStorage.getItem("menu"));
+    return menu.reduce((acc,dish)=>acc+dish.extendedIngredients.length,0)
+  } 
+
   getMenu(){
     return JSON.parse(this.myStorage.getItem("menu"));
   }

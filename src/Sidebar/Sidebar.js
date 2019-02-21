@@ -58,9 +58,9 @@ class Sidebar extends Component {
             </p>
 
             {this.state.menu.map(dish => (
-              <p key={dish.id}>{dish.title}</p>
+              <p key={dish.id}>{dish.title} {modelInstance.getDishPrice(dish)*this.state.numberOfGuests} SEK</p>
               ))}
-
+            <p>Cost: {modelInstance.getMenuPrice()*this.state.numberOfGuests} SEK</p>
             <Link to="/overview">
               <button>Checkout</button>
             </Link>

@@ -9,7 +9,7 @@ class DishItem extends Component {
     let title = this.props.dish.title.slice(0,15);
 
     return (
-      <div className="DishItem card">
+      <div className="DishItem">
         <Link to={"/details"} onClick={()=>{
           console.log("clicked item")
           modelInstance.setCurrentDish(this.props.dish);

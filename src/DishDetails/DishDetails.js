@@ -16,6 +16,8 @@ class DishDetails extends Component {
     this.state = {
       status: "LOADING",
     };
+    
+    
   }
 
   // this methods is called by React lifecycle when the
@@ -27,6 +29,9 @@ class DishDetails extends Component {
     modelInstance
       .getDish(modelInstance.getCurrentDish().id)
       .then(dish => {
+        //we set the price of each ingredient to 1. this would otherwise be calculated if price was defined
+        this.dishPrice = dish.extendedIngredients.length;
+        
         this.setState({
           status: "LOADED",
           dish: dish
@@ -44,7 +49,6 @@ class DishDetails extends Component {
     console.log(this.state.dish);
 
     
-    
 
     // depending on the state we either generate
     // useful message to the user or show the list
@@ -57,37 +61,49 @@ class DishDetails extends Component {
         dishDetails = 
         
         
-        
         <div className="container">
+        <div>
+          
+        </div>
         <div className="row">
         <div className="col">
+        <div>
           <DishItem dish ={this.state.dish}></DishItem>
+        </div>
+            {this.state.dish.instructions}
           </div>
 
           
 
           <br></br>
-          <div className="col">
-            <h2>Preperation</h2>
-            {this.state.dish.instructions}
-          </div>
-
+          
+            
+            
+          
+          
           <div className="dish-ingredients col table">
           {console.log(this.state.dish.extendedIngredients)}
-          <table><tbody><th>name</th><th>quantity</th><th>unit</th>
+        <div className="d-flex justify-content-between">
+        <Link to="/search">
+          <button>back to edit</button>
+        </Link>
+          <button onClick={()=>modelInstance.addToMenu(this.state.dish)}>add to menu</button>
+          </div> 
+          <table><tbody><th>name</th><th>quantity</th><th>unit</th><th>price</th>
           {this.state.dish.extendedIngredients.map((ingredient,i)=>(
             <tr key={i}>
               <td>{ingredient.name}</td>
               <td>{ingredient.unit}</td>
               <td>{ingredient.amount}</td>
+              <td>1</td>
             </tr>
           ))}
           </tbody>
           </table>
+          total cost: {this.dishPrice} SEK
           </div>
 
             {console.log(this.state)}
-            <button onClick={()=>modelInstance.addToMenu(this.state.dish)}>add to menu</button>
 
             </div>
 
@@ -96,21 +112,23 @@ class DishDetails extends Component {
         </div>
         break;
       default:
-        dishDetails = <b>Failed to load data, please try again</b>;
+      dishDetails = <b>Failed to load data, please try again</b>;
         break;
     }
-
+    
     return (
-      <div className="DishDetails">
-        <Sidebar model={this.props.model} />
-
+      <div className="container DishDetails">
+      <div className="row">
+      <div className="col-sm-12 col-md-3">
+      <Sidebar model={this.props.model} />
+      </div>
+      <div className="col-9">
         {dishDetails}
+      </div>
+      </div>
 
         <br></br>
 
-        <Link to="/search">
-          <button>back to edit</button>
-        </Link>
       </div>
     );
   }
