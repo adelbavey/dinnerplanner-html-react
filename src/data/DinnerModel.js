@@ -26,11 +26,12 @@ class DinnerModel extends ObservableModel {
   }
 
   getDishPrice(dish){
+    if(dish.extendedIngredients === undefined) return 1;
     return dish.extendedIngredients.length;
   }
   getMenuPrice(){
     let menu = JSON.parse(this.myStorage.getItem("menu"));
-    return menu.reduce((acc,dish)=>acc+dish.extendedIngredients.length,0)
+    return menu.reduce((acc,dish)=>acc+this.getDishPrice(dish),0)
   } 
 
   getMenu(){
